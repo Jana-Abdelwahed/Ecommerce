@@ -1,0 +1,60 @@
+name: Ecommerce Advanced CI with Fastlane
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    types: [opened, edited, synchronize]
+    branches: [ main, master ]
+
+jobs:
+  code-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # ----- 🚀 التعديل هنا: ضفنا sudo عشان نديله صلاحية الـ Admin -----
+      - name: Set up Ruby and Install Fastlane
+        run: |
+          sudo gem install bundler
+          sudo gem install fastlane
+
+      # ----- تشغيل الـ Fastlane مباشرة -----
+      - name: Run Fastlane Compliance Lane
+        run: |
+          cd android
+          fastlane compliance_check
+
+      - name: 3. Validate Commit Messages
+        uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: .commitlintrc.json
+          failOnWarnings: false
+
+  pr-title-check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: 4. Validate PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            chore
+            docs
+            style
+            refactor
+            test

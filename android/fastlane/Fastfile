@@ -1,0 +1,12 @@
+default_platform(:android)
+
+platform :android do
+  desc "Runs all code governance checks: linting and naming conventions"
+  lane :compliance_check do
+    echo(message: "Running Flutter Analyze...")
+    sh("cd ../.. && flutter analyze")
+
+    echo(message: "Checking File Naming Conventions...")
+    sh("cd ../.. && invalid_files=$(find lib -name '*[A-Z]*' -name '*.dart' 2>/dev/null); if [ ! -z \"$invalid_files\" ]; then echo '❌ ERROR: Files must be snake_case:'; echo \"$invalid_files\"; exit 1; fi")
+  end
+end

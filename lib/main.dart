@@ -1,0 +1,57 @@
+import 'package:ecommerce/core/constant/app_routes.dart';
+import 'package:ecommerce/feature/auth/presention/screens/login_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/di/service_locator.dart';
+import 'feature/auth/domin/use_cases/login_use_case.dart';
+import 'feature/auth/domin/use_cases/signup_use_case.dart';
+import 'feature/auth/presention/cubit/auth_cubit.dart';
+import 'feature/auth/presention/screens/create_account_screen.dart';
+import 'feature/cart/presentation/screens/cart_screen.dart';
+import 'feature/category/presentation/screens/category_screen.dart';
+import 'feature/layout/presentation/screens/layout_screen.dart';
+import 'feature/product_details/presentation/screens/product_details_screen.dart';
+import 'feature/shop/presentation/screens/shop_screen.dart';
+
+void main() {
+  setupServiceLocator();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        initialRoute: AppRoutes.loginScreen,
+        routes: {
+          AppRoutes.loginScreen: (context) => BlocProvider(
+            create: (context) => AuthCubit(
+              getIt<LoginUseCase>(),
+              getIt<SignupUseCase>(),
+            ),
+            child: LoginScreen(),
+          ),
+          AppRoutes.createAccountScreen: (context) => BlocProvider(
+              create: (context) => AuthCubit(
+                getIt<LoginUseCase>(),
+                getIt<SignupUseCase>(),
+              ),
+              child: const CreateAccountScreen()),
+          AppRoutes.layoutScreen: (context) => const LayoutScreen(),
+          AppRoutes.categoryScreen: (context) => const CategoriesScreen(),
+          AppRoutes.shopScreen: (context) => const ShopScreen(),
+          AppRoutes.productDetailsScreen:(context)=> const ProductDetailsScreen(),
+          AppRoutes.cartScreen:(context)=> const CartScreen(),
+        },
+        debugShowCheckedModeBanner: false,
+      ),
+    );
+  }
+}
