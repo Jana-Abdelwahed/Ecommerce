@@ -1,21 +1,21 @@
 import 'package:ecommerce/core/constant/app_routes.dart';
-import 'package:ecommerce/feature/auth/presention/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/di/service_locator.dart';
-import 'feature/auth/domin/use_cases/login_use_case.dart';
-import 'feature/auth/domin/use_cases/signup_use_case.dart';
-import 'feature/auth/presention/cubit/auth_cubit.dart';
-import 'feature/auth/presention/screens/cart/cart_screen.dart';
-import 'feature/auth/presention/screens/cart/cubit/cart_cubit.dart';
-import 'feature/auth/presention/screens/category/category_screen.dart';
-import 'feature/auth/presention/screens/create_account_screen.dart';
-import 'feature/auth/presention/screens/layout/layout_screen.dart';
-import 'feature/auth/presention/screens/product_details/product_details_screen.dart';
-import 'feature/auth/presention/screens/shop/shop_screen.dart';
-import 'feature/auth/presention/screens/wishlist_screen/cubit/wishlist_cubit.dart';
+import 'feature/domin/use_cases/login_use_case.dart';
+import 'feature/domin/use_cases/signup_use_case.dart';
+import 'feature/presention/cubit/auth_cubit.dart';
+import 'feature/presention/screens/cart/cart_screen.dart';
+import 'feature/presention/screens/cart/cubit/cart_cubit.dart';
+import 'feature/presention/screens/category/category_screen.dart';
+import 'feature/presention/screens/create_account_screen.dart';
+import 'feature/presention/screens/layout/layout_screen.dart';
+import 'feature/presention/screens/login_screen.dart';
+import 'feature/presention/screens/product_details/product_details_screen.dart';
+import 'feature/presention/screens/shop/shop_screen.dart';
+import 'feature/presention/screens/wishlist_screen/cubit/wishlist_cubit.dart';
 
 void main() {
   setupServiceLocator();

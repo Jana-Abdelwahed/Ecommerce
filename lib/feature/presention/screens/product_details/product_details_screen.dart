@@ -2,17 +2,18 @@ import 'package:ecommerce/core/constant/app_colors.dart';
 import 'package:ecommerce/core/constant/app_routes.dart';
 import 'package:ecommerce/core/constant/app_text_style.dart';
 import 'package:ecommerce/core/widgets/cart_app_bar.dart';
-import 'package:ecommerce/feature/auth/presention/screens/cart/cubit/cart_cubit.dart';
-import 'package:ecommerce/feature/auth/presention/screens/product_details/widgets/color_selector.dart';
-import 'package:ecommerce/feature/auth/presention/screens/product_details/widgets/expandable_text.dart';
-import 'package:ecommerce/feature/auth/presention/screens/product_details/widgets/product_images.dart';
-import 'package:ecommerce/feature/auth/presention/screens/product_details/widgets/product_size.dart';
-import 'package:ecommerce/feature/auth/presention/screens/product_details/widgets/quantity_counter.dart';
-import 'package:ecommerce/feature/auth/presention/screens/wishlist_screen/cubit/wishlist_cubit.dart';
-import 'package:ecommerce/feature/auth/presention/screens/wishlist_screen/cubit/wishlist_state.dart';
+import 'package:ecommerce/feature/presention/screens/cart/cubit/cart_cubit.dart';
+import 'package:ecommerce/feature/presention/screens/wishlist_screen/cubit/wishlist_cubit.dart';
+import 'package:ecommerce/feature/presention/screens/wishlist_screen/cubit/wishlist_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'widgets/color_selector.dart';
+import 'widgets/expandable_text.dart';
+import 'widgets/product_images.dart';
+import 'widgets/product_size.dart';
+import 'widgets/quantity_counter.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Map<String, dynamic>? product;

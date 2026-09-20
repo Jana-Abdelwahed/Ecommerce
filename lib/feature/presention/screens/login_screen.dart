@@ -1,5 +1,5 @@
 import 'package:ecommerce/core/constant/app_assets.dart';
-import 'package:ecommerce/feature/auth/presention/cubit/auth_states.dart';
+import 'package:ecommerce/feature/presention/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

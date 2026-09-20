@@ -1,4 +1,4 @@
-import 'package:ecommerce/feature/auth/presention/screens/shop/shop_screen.dart';
+import 'package:ecommerce/feature/presention/screens/shop/shop_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'category_screen.dart';

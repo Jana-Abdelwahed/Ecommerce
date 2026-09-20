@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-import 'package:ecommerce/feature/auth/presention/screens/wishlist_screen/cubit/wishlist_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'wishlist_state.dart';
 
 class WishlistCubit extends Cubit<WishlistState> {
   final List<Map<String, dynamic>> _items = [];

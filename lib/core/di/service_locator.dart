@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce/feature/data/data_sources/auth_remote_data_source.dart';
+import 'package:ecommerce/feature/data/repositories/auth_repository_impl.dart';
+import 'package:ecommerce/feature/domin/repositories/auth_repository.dart';
+import 'package:ecommerce/feature/domin/use_cases/login_use_case.dart';
+import 'package:ecommerce/feature/domin/use_cases/signup_use_case.dart';
+import 'package:ecommerce/feature/presention/cubit/auth_cubit.dart';
 import 'package:get_it/get_it.dart';
-
-import '../../feature/auth/data/data_sources/auth_remote_data_source.dart';
-import '../../feature/auth/data/repositories/auth_repository_impl.dart';
-import '../../feature/auth/domin/repositories/auth_repository.dart';
-import '../../feature/auth/domin/use_cases/login_use_case.dart';
-import '../../feature/auth/domin/use_cases/signup_use_case.dart';
-import '../../feature/auth/presention/cubit/auth_cubit.dart';
 
 final getIt = GetIt.instance;
 

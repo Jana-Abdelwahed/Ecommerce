@@ -1,11 +1,12 @@
 import 'package:ecommerce/core/constant/app_size.dart';
-import 'package:ecommerce/feature/auth/presention/screens/category/categories_navegator_screen.dart';
-import 'package:ecommerce/feature/auth/presention/screens/home/home_screen.dart';
-import 'package:ecommerce/feature/auth/presention/screens/layout/custom_nav_bar.dart';
-import 'package:ecommerce/feature/auth/presention/screens/profile/profile_screen.dart';
-import 'package:ecommerce/feature/auth/presention/screens/wishlist_screen/wishlist_screen.dart';
+import 'package:ecommerce/feature/presention/screens/category/categories_navegator_screen.dart';
+import 'package:ecommerce/feature/presention/screens/home/home_screen.dart';
+import 'package:ecommerce/feature/presention/screens/profile/profile_screen.dart';
+import 'package:ecommerce/feature/presention/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'custom_nav_bar.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});

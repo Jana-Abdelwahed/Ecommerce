@@ -6,13 +6,14 @@ import 'package:ecommerce/core/constant/app_routes.dart';
 import 'package:ecommerce/core/constant/app_text_style.dart';
 import 'package:ecommerce/core/widgets/app_bar.dart';
 import 'package:ecommerce/core/widgets/product_card.dart';
-import 'package:ecommerce/feature/auth/presention/screens/home/category_widget.dart';
-import 'package:ecommerce/feature/auth/presention/screens/shop/shop_screen.dart';
-import 'package:ecommerce/feature/auth/presention/screens/wishlist_screen/cubit/wishlist_cubit.dart';
-import 'package:ecommerce/feature/auth/presention/screens/wishlist_screen/cubit/wishlist_state.dart';
+import 'package:ecommerce/feature/presention/screens/shop/shop_screen.dart';
+import 'package:ecommerce/feature/presention/screens/wishlist_screen/cubit/wishlist_cubit.dart';
+import 'package:ecommerce/feature/presention/screens/wishlist_screen/cubit/wishlist_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'category_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
