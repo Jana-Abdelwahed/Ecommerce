@@ -26,7 +26,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final rePasswordController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +33,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     phoneController.dispose();
     emailController.dispose();
     passwordController.dispose();
-    rePasswordController.dispose();
 
     super.dispose();
   }
@@ -69,7 +67,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 24.h,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 5.h,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -77,9 +76,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         Image.asset(AppAssets.logo, width: 235.w, height: 70.h),
                       ],
                     ),
-                    SizedBox(height: 1),
+                    SizedBox(height: 40.h),
                     Text("Full Name", style: AppTextStyle.poppins18White500),
-
+                    SizedBox(height: 10.h),
                     PrimaryTextFormField(
                       hintText: "enter your full name",
                       controller: nameController,
@@ -87,21 +86,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         if (value == null || value.trim().isEmpty) {
                           return "Please enter your full name";
                         }
-
                         if (value.trim().length < 3) {
                           return "Name must be at least 3 characters";
                         }
-
                         return null;
                       },
                     ),
-
-                    SizedBox(height: 1),
+                    SizedBox(height: 15.h),
                     Text(
                       "Mobile Number",
                       style: AppTextStyle.poppins18White500,
                     ),
-
+                    SizedBox(height: 10.h),
                     PrimaryTextFormField(
                       hintText: "enter your mobile no.",
                       controller: phoneController,
@@ -110,20 +106,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         if (value == null || value.trim().isEmpty) {
                           return "Please enter your mobile number";
                         }
-
                         if (value.trim().length < 10) {
                           return "Please enter a valid mobile number";
                         }
-
                         return null;
                       },
                     ),
-
-                    SizedBox(height: 1),
+                    SizedBox(height: 15.h),
                     Text(
                       "E-mail address",
                       style: AppTextStyle.poppins18White500,
                     ),
+                    SizedBox(height: 10.h),
                     PrimaryTextFormField(
                       hintText: "enter your email address",
                       controller: emailController,
@@ -132,16 +126,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         if (value == null || value.trim().isEmpty) {
                           return "Please enter your email";
                         }
-
                         if (!value.contains('@')) {
                           return "Please enter a valid email";
                         }
-
                         return null;
                       },
                     ),
-                    SizedBox(height: 1.h),
+                    SizedBox(height: 15.h),
                     Text("Password", style: AppTextStyle.poppins18White500),
+                    SizedBox(height: 10.h),
                     PrimaryTextFormField(
                       hintText: "enter your password",
                       controller: passwordController,
@@ -150,36 +143,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         if (value == null || value.isEmpty) {
                           return "Please enter your password";
                         }
-
                         if (value.length < 6) {
                           return "Password must be at least 6 characters";
                         }
-
                         return null;
                       },
                     ),
-                    SizedBox(height: 1),
-                    Text(
-                      "Confirm Password",
-                      style: AppTextStyle.poppins18White500,
-                    ),
-                    PrimaryTextFormField(
-                      hintText: "re-enter your password",
-                      controller: rePasswordController,
-                      isPassword: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please confirm your password";
-                        }
-
-                        if (value != passwordController.text) {
-                          return "Passwords do not match";
-                        }
-
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 1),
+                    SizedBox(height: 25.h),
                     SecondaryButton(
                       text: isLoading ? "Creating Account..." : "Sign Up",
                       onPressed: isLoading
@@ -190,7 +160,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   name: nameController.text.trim(),
                                   email: emailController.text.trim(),
                                   password: passwordController.text,
-                                  rePassword: rePasswordController.text,
+                                  rePassword: passwordController.text,
                                   phone: phoneController.text.trim(),
                                 );
                               }

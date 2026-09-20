@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import '../../domin/entities/user_entity.dart';
 import '../../domin/repositories/auth_repository.dart';
 import '../data_sources/auth_remote_data_source.dart';
@@ -14,14 +15,17 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     try {
-      final userModel = await remoteDataSource.login
-        (email: email, password: password);
+      final userModel = await remoteDataSource.login(
+        email: email,
+        password: password,
+      );
 
       final userEntity = UserEntity(
         name: userModel.user.name,
         email: userModel.user.email,
         token: userModel.token,
         role: userModel.user.role,
+        phone: userModel.user.phone,
       );
 
       return Right(userEntity);
@@ -52,6 +56,7 @@ class AuthRepositoryImpl implements AuthRepository {
         email: userModel.user.email,
         token: userModel.token,
         role: userModel.user.role,
+        phone: userModel.user.phone.isNotEmpty ? userModel.user.phone : phone,
       );
 
       return Right(userEntity);

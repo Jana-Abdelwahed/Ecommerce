@@ -1,34 +1,29 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domin/entities/user_entity.dart';
 import '../../domin/use_cases/login_use_case.dart';
 import '../../domin/use_cases/signup_use_case.dart';
 import 'auth_states.dart';
-
 
 class AuthCubit extends Cubit<AuthState> {
   final LoginUseCase loginUseCase;
   final SignupUseCase signupUseCase;
 
-  AuthCubit(
-      this.loginUseCase,
-      this.signupUseCase,
-      ) : super(const AuthInitial());
+  UserEntity? currentUser;
 
-  Future<void> login({
-    required String email,
-    required String password,
-  }) async {
+  AuthCubit(this.loginUseCase, this.signupUseCase) : super(const AuthInitial());
+
+  Future<void> login({required String email, required String password}) async {
     emit(const AuthLoading());
 
-    final result = await loginUseCase(
-      email: email,
-      password: password,
-    );
+    final result = await loginUseCase(email: email, password: password);
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(AuthLoginFailure(failure));
       },
-          (user) {
+      (user) {
+        currentUser = user;
         emit(AuthLoginSuccess(user));
       },
     );
@@ -52,10 +47,11 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(AuthSignupFailure(failure));
       },
-          (user) {
+      (user) {
+        currentUser = user;
         emit(AuthSignupSuccess(user));
       },
     );

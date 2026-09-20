@@ -1,10 +1,9 @@
 import 'package:ecommerce/core/constant/app_colors.dart';
 import 'package:ecommerce/core/constant/app_text_style.dart';
 import 'package:ecommerce/core/widgets/favouries_button.dart';
+import 'package:ecommerce/feature/auth/presention/screens/product_details/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../feature/product_details/presentation/screens/product_details_screen.dart';
 
 class ProductCard extends StatelessWidget {
   final String title;
@@ -13,32 +12,47 @@ class ProductCard extends StatelessWidget {
   final String price;
   final String? oldPrice;
   final double rating;
+  final bool isFavorite;
   final VoidCallback? onAddToCart;
   final VoidCallback? onFavoriteTap;
+  final VoidCallback? onTap;
 
   const ProductCard({
     super.key,
     required this.title,
-    this.description = "Nike shoes flexible for wo..", // Restored default value
+    this.description = "Nike shoes flexible for wo..",
     required this.imagePath,
     required this.price,
     this.oldPrice,
     required this.rating,
+    this.isFavorite = false,
     this.onAddToCart,
     this.onFavoriteTap,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(
-          context,
-          rootNavigator: true,
-        ).push(MaterialPageRoute(builder: (_) => const ProductDetailsScreen()));
-      },
+      onTap:
+          onTap ??
+          () {
+            Navigator.of(context, rootNavigator: true).push(
+              MaterialPageRoute(
+                builder: (_) => ProductDetailsScreen(
+                  product: {
+                    'title': title,
+                    'image': imagePath,
+                    'price': price,
+                    'description': description,
+                    'rating': rating,
+                  },
+                ),
+              ),
+            );
+          },
       child: Container(
-        width: 190.w, // Keeps proper sizing in horizontal lists (HomeScreen)
+        width: 190.w,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15.r),
@@ -50,7 +64,6 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image with Favorite Button Overlay
             Stack(
               children: [
                 ClipRRect(
@@ -76,15 +89,14 @@ class ProductCard extends StatelessWidget {
                 Positioned(
                   top: 8.h,
                   right: 8.w,
-                  child: GestureDetector(
+                  child: FavouriesButton(
+                    isFavorite: isFavorite,
                     onTap: onFavoriteTap,
-                    child: const FavouriesButton(),
                   ),
                 ),
               ],
             ),
 
-            // Details Section
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
@@ -92,8 +104,6 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Title & Description
-                    // Title & Description Section inside ProductCard
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -105,7 +115,6 @@ class ProductCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        // Only display description if it is not empty
                         if (description.isNotEmpty) ...[
                           SizedBox(height: 2.h),
                           Text(
@@ -119,7 +128,6 @@ class ProductCard extends StatelessWidget {
                       ],
                     ),
 
-                    // Price & Old Price
                     Row(
                       children: [
                         Text(
@@ -142,7 +150,6 @@ class ProductCard extends StatelessWidget {
                       ],
                     ),
 
-                    // Rating & Add to Cart Button
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
